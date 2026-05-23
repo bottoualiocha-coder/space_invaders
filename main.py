@@ -1,5 +1,5 @@
 import pygame
-from alian import Alian
+from alian import *
 from player import Player
 from random import choice
 
@@ -29,7 +29,7 @@ while True:
             exit()
         if event.type == ALIAN_SHOOT:
             choose_alian = choice(alien_list)
-            choose_alian.shoot(bullet_list)
+            choose_alian.shoot(alien_bullet_list)
     screen.fill("black")
     for alien in alien_list:
         alien.draw(screen)

@@ -14,4 +14,4 @@ class Alian:
         screen.blit(self.image, self.rect)
 
     def shoot(self, bullet_list):
-        bullet_list.append(BulletAlian())
+        bullet_list.append(BulletAlian(self.rect.center))
