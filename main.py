@@ -1,11 +1,11 @@
 import pygame
-from alian import *
+from alian import Alian
 from player import Player
 from random import choice
 
 pygame.init()
 
-WIDTH, HEIGHT = 800, 800
+WIDTH, HEIGHT = 890, 800
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
