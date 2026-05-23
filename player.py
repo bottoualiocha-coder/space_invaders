@@ -21,8 +21,8 @@ class Player:
             self.rect.x += 10
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.rect.x -= 10
-        if self.rect.right > WIDTH:
-            self.rect.right = WIDTH
+        if self.rect.right > 890:
+            self.rect.right = 890
         if self.rect.left < 0:
             self.rect.left = 0
 
