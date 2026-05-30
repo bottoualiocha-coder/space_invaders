@@ -36,8 +36,14 @@ while True:
     screen.fill("black")
 
     for alien in alien_list:
+        if alien.need_to_turn:
+            alien.direction *= -1
+            break
+
+    for alien in alien_list:
         alien.draw(screen)
         alien.move(alien_direction)
+
     player.draw(screen)
     player.move()
     player.shoot(bullet_list)

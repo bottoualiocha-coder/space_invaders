@@ -1,5 +1,6 @@
 import pygame
 from alian_bullet import BulletAlian
+from setts import WIDTH
 
 
 class Alian:
@@ -19,3 +20,8 @@ class Alian:
 
     def move(self,direction):
         self.rect.x += direction * self.speed
+
+    def need_to_turn(self):
+        if self.rect.right > WIDTH or self.rect.left < 0:
+            return True
+        return False
