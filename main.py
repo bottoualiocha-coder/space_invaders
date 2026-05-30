@@ -3,14 +3,15 @@ from alian import Alian
 from player import Player
 from random import choice
 
-pygame.init()
+from setts import WIDTH, HEIGHT
 
-WIDTH, HEIGHT = 890, 800
+pygame.init()
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 
 alien_list = []
+alien_direction = 1
 bullet_list = []
 alien_bullet_list = []
 for y in range(4):
@@ -27,15 +28,20 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+
         if event.type == ALIAN_SHOOT:
             choose_alian = choice(alien_list)
             choose_alian.shoot(alien_bullet_list)
+
     screen.fill("black")
+
     for alien in alien_list:
         alien.draw(screen)
+        alien.move(alien_direction)
     player.draw(screen)
     player.move()
     player.shoot(bullet_list)
+
     for bullet in bullet_list:
         bullet.draw(screen)
         bullet.move()
@@ -43,6 +49,7 @@ while True:
         if alian_index != -1:
             alien_list.pop(alian_index)
             bullet_list.remove(bullet)
+
     for bulletalian in alien_bullet_list:
         bulletalian.draw(screen)
         bulletalian.move()

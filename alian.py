@@ -9,9 +9,13 @@ class Alian:
         self.rect = self.image.get_rect(topleft=(x, y))
         self.delay = 3
         self.timer = self.delay
+        self.speed = 1
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
     def shoot(self, bullet_list):
         bullet_list.append(BulletAlian(self.rect.center))
+
+    def move(self,direction):
+        self.rect.x += direction * self.speed
