@@ -16,13 +16,13 @@ bullet_list = []
 alien_bullet_list = []
 for y in range(4):
     for x in range(8):
-        alien_list.append(Alian(40 + x * 70, 100 + y * 100))
+        alien_list.append(Alian(40 + x * 70, 55 + y * 100))
 
 ALIAN_SHOOT = pygame.USEREVENT + 1
 pygame.time.set_timer(ALIAN_SHOOT, 2000)
 
 player = Player()
-
+bulletalian =None
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -36,9 +36,15 @@ while True:
     screen.fill("black")
 
     for alien in alien_list:
-        if alien.need_to_turn:
-            alien.direction *= -1
+        if alien.need_to_turn():
+            alien_direction *= -1
             break
+
+
+    for alien in alien_list:
+        if alien.need_to_turn():
+            for alientwo in alien_list:
+                alientwo.change()
 
     for alien in alien_list:
         alien.draw(screen)
@@ -59,6 +65,11 @@ while True:
     for bulletalian in alien_bullet_list:
         bulletalian.draw(screen)
         bulletalian.move()
+
+        for alien_bullet in alien_bullet_list:
+            if alien_bullet.bullet_alien_rect.colliderect(player.rect):
+                 exit (1)
+
 
     pygame.display.update()
     clock.tick(60)

@@ -25,3 +25,7 @@ class Alian:
         if self.rect.right > WIDTH or self.rect.left < 0:
             return True
         return False
+
+    def change(self):
+        self.speed += 0.1
+        self.rect.y += 3
