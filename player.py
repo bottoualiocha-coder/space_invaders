@@ -4,6 +4,8 @@ from bullet import Bullet
 from setts import WIDTH, HEIGHT
 
 
+speed = 10
+
 class Player:
     def __init__(self):
         self.image = pygame.Surface((75, 75))
@@ -16,15 +18,20 @@ class Player:
         screen.blit(self.image, self.rect)
 
     def move(self):
+        global speed
         keys = pygame.key.get_pressed()
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-            self.rect.x += 10
+            self.rect.x += speed
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
-            self.rect.x -= 10
+            self.rect.x -= speed
         if self.rect.right > 890:
             self.rect.right = 890
         if self.rect.left < 0:
             self.rect.left = 0
+        if keys[pygame.K_LSHIFT]:
+            speed = 15
+        elif not keys[pygame.K_LSHIFT]:
+            speed = 10
 
     def shoot(self, bullet_list):
         keys = pygame.key.get_pressed()

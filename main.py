@@ -14,6 +14,7 @@ alien_list = []
 alien_direction = 1
 bullet_list = []
 alien_bullet_list = []
+truly = False
 for y in range(4):
     for x in range(8):
         alien_list.append(Alian(40 + x * 70, 55 + y * 100))
@@ -22,13 +23,13 @@ ALIAN_SHOOT = pygame.USEREVENT + 1
 pygame.time.set_timer(ALIAN_SHOOT, 2000)
 
 player = Player()
-bulletalian =None
+bulletalian = None
+alien = None
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-
         if event.type == ALIAN_SHOOT:
             choose_alian = choice(alien_list)
             choose_alian.shoot(alien_bullet_list)
@@ -38,13 +39,9 @@ while True:
     for alien in alien_list:
         if alien.need_to_turn():
             alien_direction *= -1
-            break
-
-
-    for alien in alien_list:
-        if alien.need_to_turn():
             for alientwo in alien_list:
                 alientwo.change()
+            break
 
     for alien in alien_list:
         alien.draw(screen)
@@ -68,7 +65,11 @@ while True:
 
         for alien_bullet in alien_bullet_list:
             if alien_bullet.bullet_alien_rect.colliderect(player.rect):
-                 exit (1)
+                exit(1)
+
+        for alien in alien_list:
+            if alien.rect.colliderect(player.rect):
+                exit()
 
 
     pygame.display.update()
