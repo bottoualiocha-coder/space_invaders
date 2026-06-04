@@ -8,8 +8,8 @@ speed = 10
 
 class Player:
     def __init__(self):
-        self.image = pygame.Surface((75, 75))
-        self.image.fill("yellow")
+        self.image = pygame.image.load("assets/shooter.png")
+        self.image = pygame.transform.rotozoom(self.image, 0, 2)
         self.rect = self.image.get_rect(midbottom=(WIDTH // 2, HEIGHT - 50))
         self.delay = 3
         self.timer = self.delay
@@ -29,7 +29,7 @@ class Player:
         if self.rect.left < 0:
             self.rect.left = 0
         if keys[pygame.K_LSHIFT]:
-            speed = 15
+            speed = 20
         elif not keys[pygame.K_LSHIFT]:
             speed = 10
 

@@ -65,7 +65,7 @@ while True:
 
         for alien_bullet in alien_bullet_list:
             if alien_bullet.bullet_alien_rect.colliderect(player.rect):
-                exit(1)
+                exit()
 
         for alien in alien_list:
             if alien.rect.colliderect(player.rect):
